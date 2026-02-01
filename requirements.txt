@@ -1,0 +1,28 @@
+# Core scientific stack
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+matplotlib>=3.8
+seaborn>=0.13
+joblib>=1.3
+tqdm>=4.66
+
+# Deep Learning (Python 3.12 compatible)
+tensorflow>=2.16
+
+# MLOps
+mlflow>=2.10
+dvc>=3.38
+
+# Utilities
+notebook>=7.0
+python-box>=7.1
+pyYAML>=6.0
+types-PyYAML
+ensure>=1.0.4
+gdown>=5.0
+
+# Web
+Flask>=3.0
+Flask-Cors>=4.0
+# -e
