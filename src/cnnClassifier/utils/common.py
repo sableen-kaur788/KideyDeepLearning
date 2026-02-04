@@ -4,7 +4,7 @@ import json
 import base64
 import joblib
 from box.exceptions import BoxValueError
-from cnnClassifier import logger
+from src.cnnClassifier import logger
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
