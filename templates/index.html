@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brain Tumor Detection</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    color:white;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,0,0,0.7);
+}
+
+.preview-box{
+    height:280px;
+    border:2px dashed #00d9ff;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.preview-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.btn-gradient{
+    background:linear-gradient(90deg,#00d9ff,#00ff95);
+    border:none;
+    color:black;
+    font-weight:600;
+}
+
+.btn-gradient:hover{
+    transform:scale(1.05);
+}
+
+#result{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.spinner-border{
+    width:3rem;
+    height:3rem;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-6 col-lg-5">
+
+<div class="card p-4">
+
+<h2 class="text-center mb-1">🧠 Brain Tumor Detection</h2>
+<p class="text-center text-secondary mb-4">
+Upload MRI Scan Image
+</p>
+
+<div class="preview-box mb-3">
+    <img id="preview">
+</div>
+
+<input type="file" id="imageInput" class="form-control mb-3">
+
+<button class="btn btn-gradient w-100 mb-3" onclick="predictImage()">
+Predict
+</button>
+
+<div class="text-center d-none" id="loader">
+    <div class="spinner-border text-info"></div>
+    <p class="mt-2">Analyzing Image...</p>
+</div>
+
+<div class="text-center mt-3" id="result"></div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+let base64Image="";
+
+document.getElementById("imageInput").addEventListener("change",function(){
+    let file=this.files[0];
+    let reader=new FileReader();
+
+    reader.onload=function(){
+        document.getElementById("preview").src=reader.result;
+        base64Image=reader.result.split(",")[1];
+    }
+    reader.readAsDataURL(file);
+});
+
+function predictImage(){
+
+    if(base64Image===""){
+        alert("Please upload image first");
+        return;
+    }
+
+    document.getElementById("loader").classList.remove("d-none");
+    document.getElementById("result").innerHTML="";
+
+    fetch("/predict",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({image:base64Image})
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        document.getElementById("loader").classList.add("d-none");
+
+        let pred=data[0].image;
+
+        if(pred==="Tumor"){
+            document.getElementById("result").innerHTML=
+            "<span class='text-danger'>⚠ Tumor Detected</span>";
+        }
+        else{
+            document.getElementById("result").innerHTML=
+            "<span class='text-success'>✅ Normal Brain</span>";
+        }
+    })
+    .catch(()=>{
+        document.getElementById("loader").classList.add("d-none");
+        alert("Server Error");
+    });
+
+}
+
+</script>
+
+</body>
+</html>
