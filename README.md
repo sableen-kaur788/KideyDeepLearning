@@ -37,9 +37,9 @@ pip install -r requirements.txt
 [dagshub](https://dagshub.com/)
 
 ```bash
-MLFLOW_TRACKING_URI "https://dagshub.com/sableen-kaur788/KideyDeepLearning.mlflow"
-MLFLOW_TRACKING_USERNAME "sableen-kaur"
-MLFLOW_TRACKING_PASSWORD "7ce00178878fb4168a93a6127635f0e55349a6f1"
+export MLFLOW_TRACKING_URI "https://dagshub.com/sableen-kaur788/KideyDeepLearning.mlflow"
+export MLFLOW_TRACKING_USERNAME "sableen-kaur"
+export MLFLOW_TRACKING_PASSWORD "7ce00178878fb4168a93a6127635f0e55349a6f1"
 ```
 
 ```bash
