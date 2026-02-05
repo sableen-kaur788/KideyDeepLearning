@@ -160,3 +160,25 @@ cython_debug/
 #.idea/
 
 artifacts/*
+
+# DVC cache
+.dvc/cache
+
+# Artifacts & data
+artifacts/
+data/
+
+# Models
+*.h5
+*.keras
+
+# Python
+__pycache__/
+.venv/
+
+# MLflow
+mlruns/
+
+# OS files
+.DS_Store
+Thumbs.db
