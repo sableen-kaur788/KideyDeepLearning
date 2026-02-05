@@ -81,7 +81,7 @@ class Evaluation:
             "https://dagshub.com/sableen-kaur788/KideyDeepLearning.mlflow"
         )
 
-        mlflow.set_experiment("Kidney_Tumor_Experiment")
+        mlflow.set_experiment("Kidney_Tumor_Detection")
 
         with mlflow.start_run():
 
