@@ -99,9 +99,14 @@ class Training:
             model=self.model
         )
 
+    
     # ==============================
     # Save model
     # ==============================
     @staticmethod
     def save_model(path: Path, model: tf.keras.Model):
-        model.save(path)
+        # Always save in keras format
+        if not str(path).endswith(".keras"):
+            path = path.with_suffix(".keras")
+            model.save(path)
+    
