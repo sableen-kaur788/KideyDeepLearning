@@ -11,7 +11,7 @@ class PrepareBaseModel:
         self.model = tf.keras.applications.VGG16(
             input_shape=self.config.params_image_size,
             weights=self.config.params_weights,
-            include_top=self.config.params_include_top,
+            include_top=self.config.params_include_top
         )
 
         self.save_model(path=self.config.base_model_path, model=self.model)
@@ -29,11 +29,15 @@ class PrepareBaseModel:
 
         flatten_in = tf.keras.layers.Flatten()(model.output)
 
-        prediction = tf.keras.layers.Dense(units=classes, activation="softmax")(
-            flatten_in
-        )
+        prediction = tf.keras.layers.Dense(
+            units=classes,
+            activation="softmax"
+        )(flatten_in)
 
-        full_model = tf.keras.models.Model(inputs=model.input, outputs=prediction)
+        full_model = tf.keras.models.Model(
+            inputs=model.input,
+            outputs=prediction
+        )
 
         full_model.summary()
         return full_model
@@ -43,11 +47,14 @@ class PrepareBaseModel:
             model=self.model,
             classes=self.config.params_classes,
             freeze_all=True,
-            freeze_till=None,
+            freeze_till=None
         )
 
-        self.save_model(path=self.config.updated_base_model_path, model=self.full_model)
+        self.save_model(
+            path=self.config.updated_base_model_path,
+            model=self.full_model
+        )
 
     @staticmethod
     def save_model(path: Path, model: tf.keras.Model):
-        model.save(path, save_format="h5", include_optimizer=False)
+        model.save(path, include_optimizer=False)
