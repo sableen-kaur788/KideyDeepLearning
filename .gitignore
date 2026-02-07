@@ -167,6 +167,8 @@ artifacts/*
 # Artifacts & data
 artifacts/
 data/
+!artifacts/*.dvc
+
 
 # Models
 *.h5
