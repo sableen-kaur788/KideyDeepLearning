@@ -1,0 +1,6 @@
+outs:
+- md5: db51a12858c87ccea2ec157ab4335bed.dir
+  size: 293855797
+  nfiles: 469
+  hash: md5
+  path: artifacts
