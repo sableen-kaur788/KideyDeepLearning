@@ -1,9 +1,24 @@
+# Use official Python image
 FROM python:3.12.4
 
-RUN apt update -y && apt install awscli -y
+# Install system dependencies
+RUN apt-get update -y && \
+    apt-get install -y awscli libgl1 && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /app
 
+# Copy application code
 COPY . /app
-RUN pip install -r requirements.txt
 
-CMD ["python3", "app.py"]
+# Upgrade pip and install Python dependencies
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r requirements.txt
+RUN python -m pip install gunicorn
+
+# Expose Flask port
+EXPOSE 8080
+
+# Run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "application:app"]
