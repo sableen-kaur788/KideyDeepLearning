@@ -109,5 +109,5 @@ stages:
     outs:
     - path: scores.json
       hash: md5
-      md5: 4abdb56264d269c27a407dd93581c724
-      size: 71
+      md5: 7ed1ccf136baa363e58bc017f8e03c3c
+      size: 73
