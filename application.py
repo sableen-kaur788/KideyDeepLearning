@@ -11,7 +11,7 @@ from flask_cors import CORS
 MLFLOW_TRACKING_URI = "https://dagshub.com/sableen-kaur788/KideyDeepLearning.mlflow"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 os.environ["MLFLOW_TRACKING_USERNAME"] = "sableen-kaur788"
-os.environ["MLFLOW_TRACKING_PASSWORD"] = "7ce00178878fb4168a93a6127635f0e55349a6f1"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "5ce77ae337656ba2215bbed82c8bae34b6ec81f3"
 
 MODEL_NAME = "KidneyTumorModel"
 
