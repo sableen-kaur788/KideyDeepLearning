@@ -1,9 +1,9 @@
-# Use official Python image
-FROM python:3.12.4
+# Use official Python 3.11 slim image
+FROM python:3.11-slim
 
 # Install system dependencies
 RUN apt-get update -y && \
-    apt-get install -y awscli libgl1 && \
+    apt-get install -y libgl1 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -14,11 +14,12 @@ COPY . /app
 
 # Upgrade pip and install Python dependencies
 RUN python -m pip install --upgrade pip
-RUN python -m pip install -r requirements.txt
-RUN python -m pip install gunicorn
+RUN python -m pip install --no-cache-dir -r requirements.txt gunicorn
 
 # Expose Flask port
 EXPOSE 8080
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "application:app"]
+# Run the application with Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "application:app", "--workers", "1", "--reload"]
+
+
