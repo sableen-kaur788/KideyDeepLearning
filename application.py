@@ -12,6 +12,10 @@ MLFLOW_TRACKING_URI = "https://dagshub.com/sableen-kaur788/KideyDeepLearning.mlf
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 os.environ["MLFLOW_TRACKING_USERNAME"] = "sableen-kaur788"
 os.environ["MLFLOW_TRACKING_PASSWORD"] = "5ce77ae337656ba2215bbed82c8bae34b6ec81f3"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 00155aa2bbe2dcd71ad5a65da402700ab74950f1
 
 MODEL_NAME = "KidneyTumorModel"
 
